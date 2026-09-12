@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="دوري أبطال الكتاب المقدس 2026 - الموسم التاسع - المنصة التفاعلية لمسابقات واختبارات العهدين القديم والجديد تحت رعاية مطرانية شبرا الخيمة ونيافة الأنبا مرقس">
+  <title>دوري أبطال الكتاب المقدس 2026 | الموسم التاسع</title>
+  
+  <!-- Google Fonts Preconnect & Cairo / Outfit Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Primary Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      
+      <!-- Brand Logo and Titles -->
+      <div class="brand-group" id="header-brand" title="العودة للصفحة الرئيسية">
+        <div class="brand-logo-frame">
+          <img src="dawry.jpeg" alt="شعار دوري أبطال الكتاب المقدس 2026" class="brand-logo">
+        </div>
+        <div class="brand-titles">
+          <h1>دوري أبطال الكتاب المقدس 2026</h1>
+          <p>الموسم التاسع • مطرانية شبرا الخيمة للأقباط الأرثوذكس</p>
+        </div>
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav class="nav-menu" id="nav-menu" aria-label="التنقل الرئيسي">
+        <a class="nav-link active" id="nav-home" data-page="home">
+          🏠 الصفحة الرئيسية
+        </a>
+        <a class="nav-link" id="nav-ot" data-page="ot">
+          📜 العهد القديم
+        </a>
+        <a class="nav-link" id="nav-nt" data-page="nt">
+          ✉️ العهد الجديد
+        </a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <button id="sound-toggle" class="sound-toggle-btn" title="تبديل المؤثرات الصوتية">
+          🔊 الصوت: مفعل
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Breadcrumbs & History Back Bar -->
+  <div class="history-bar" id="history-bar">
+    <div class="container history-bar-inner">
+      <button class="btn-back" id="btn-back" title="الرجوع إلى الصفحة السابقة">
+        ⬅️ رجوع للصفحة السابقة
+      </button>
+      <div class="breadcrumbs" id="breadcrumbs">
+        <span>🏠 الرئيسية</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Container -->
+  <main class="container">
+
+    <!-- ====================================================================
+         VIEW 1: HOME PAGE
+         ==================================================================== -->
+    <div id="view-home" class="view-page active">
+
+      <!-- Hero Banner -->
+      <section class="hero-section">
+        <div class="hero-content">
+          <div class="hero-badge">
+            ✨ تحت رعاية نيافة الحبر الجليل الأنبا مرقس مطران شبرا الخيمة وتوابعها
+          </div>
+          <h2 class="hero-title">
+            مرحباً بكم في <span>دوري أبطال الكتاب المقدس 2026</span>
+          </h2>
+          <p class="hero-desc">
+            المنصة التفاعلية الرسمية الشاملة لمراجعة وخوض مسابقات الكتاب المقدس للموسم التاسع، تضم منهج 2026 المعتمد: 
+            <strong>أسفار العهد القديم</strong> (سفر ملوك أول، ملوك ثاني، وأخبار أيام أول) و<strong>رسائل العهد الجديد</strong> (كورنثوس الثانية، غلاطية، أفسس، فيلبي، وكولوسي).
+          </p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <button class="btn-gold" id="hero-btn-ot" style="width: auto;" data-page="ot">
+              📜 تصفح العهد القديم (3 أسفار)
+            </button>
+            <button class="btn-red" id="hero-btn-nt" style="width: auto;" data-page="nt">
+              ✉️ تصفح العهد الجديد (5 رسائل)
+            </button>
+          </div>
+        </div>
+
+        <!-- Poster Preview Frame -->
+        <div class="hero-poster-preview">
+          <img src="dawry.jpeg" alt="بوستر دوري أبطال الكتاب المقدس 2026 الرسمي" class="hero-poster-img" id="poster-img-preview" title="انقر لتكبير البوستر">
+          <div class="hero-poster-caption">
+            🗓️ يبدأ 5 سبتمبر 2026
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick Statistics Strip -->
+      <div class="stats-strip">
+        <div class="stat-box">
+          <span class="stat-num" id="stat-books">8</span>
+          <span class="stat-title">أسفار ورسائل مقررة</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num" id="stat-chapters">109</span>
+          <span class="stat-title">إجمالي الإصحاحات</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num" id="stat-questions">1,000+</span>
+          <span class="stat-title">سؤالاً نصياً موثقاً</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">2026</span>
+          <span class="stat-title">الموسم التاسع الرسمي</span>
+        </div>
+      </div>
+
+      <!-- Challenge Modes Selection -->
+      <section class="modes-section">
+        <h3 class="section-headline">⚡ اختر نظام التحدي قبل البدء</h3>
+        <div class="modes-grid">
+          
+          <div class="mode-card active" data-mode="championship" id="mode-championship">
+            <div class="mode-icon">🏆</div>
+            <div class="mode-name">وضع البطولة الرسمية</div>
+            <div class="mode-desc">
+              مؤقت 20 ثانية لكل سؤال، احتساب النقاط التنافسية، حساب سلسلة الإجابات (Streak)، مع تقييم وشهادة الأبطال.
+            </div>
+          </div>
+
+          <div class="mode-card" data-mode="practice" id="mode-practice">
+            <div class="mode-icon">📖</div>
+            <div class="mode-name">وضع التدريب والمذاكرة</div>
+            <div class="mode-desc">
+              بدون مؤقت زمني، مع إظهار الشاهد الكتابي والتفسير المفصل فور اختيار الإجابة لتثبيت الحفظ والمراجعة العميقة.
+            </div>
+          </div>
+
+          <div class="mode-card" data-mode="speed" id="mode-speed">
+            <div class="mode-icon">⚡</div>
+            <div class="mode-name">تحدي السرعة الخاطف</div>
+            <div class="mode-desc">
+              10 ثوانٍ فقط لكل سؤال لاختبار سرعة البديهة والتركيز العالي والتأكد من الحفظ المتقن.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Portals: Old and New Testament Portals -->
+      <section class="portals-section">
+        <h3 class="section-headline">📚 أقسام منهج المسابقة (2026)</h3>
+        <div class="portals-grid">
+          
+          <!-- Old Testament Portal -->
+          <div class="portal-card ot-portal">
+            <div>
+              <div class="portal-header">
+                <div class="portal-icon">📜</div>
+                <div class="portal-title">
+                  <h3>العهد القديم</h3>
+                  <span class="portal-badge">3 أسفار تاريخية • 76 إصحاحاً</span>
+                </div>
+              </div>
+              <p class="portal-desc">
+                تاريخ شعب الله، عصر المملكة الموحدة وسليمان الحكيم وبناء الهيكل، ثم انقسام المملكة والأنبياء الكبار إيليا وإليشع وتاريخ ملوك يهوذا وإسرائيل.
+              </p>
+              <div class="portal-books-list">
+                <span class="portal-book-pill">👑 ملوك أول (22)</span>
+                <span class="portal-book-pill">⚔️ ملوك ثاني (25)</span>
+                <span class="portal-book-pill">📜 أخبار الأيام الأول (29)</span>
+              </div>
+            </div>
+            <button class="btn-gold" data-page="ot">
+              دخول قسم العهد القديم واختيار الإصحاح ⬅️
+            </button>
+          </div>
+
+          <!-- New Testament Portal -->
+          <div class="portal-card nt-portal">
+            <div>
+              <div class="portal-header">
+                <div class="portal-icon">✉️</div>
+                <div class="portal-title">
+                  <h3>العهد الجديد</h3>
+                  <span class="portal-badge">5 رسائل رسولية • 33 إصحاحاً</span>
+                </div>
+              </div>
+              <p class="portal-desc">
+                رسائل القديس بولس الرسول المفعمة باللاهوت والخدمة والتعزية، وتبرير الإيمان، ووحدة الكنيسة جسد المسيح، والفرح الحقيقي، ومجد سر المسيح.
+              </p>
+              <div class="portal-books-list">
+                <span class="portal-book-pill">✉️ كورنثوس الثانية (13)</span>
+                <span class="portal-book-pill">✝️ غلاطية (6)</span>
+                <span class="portal-book-pill">⛪ أفسس (6)</span>
+                <span class="portal-book-pill">✨ فيلبي (4)</span>
+                <span class="portal-book-pill">👑 كولوسي (4)</span>
+              </div>
+            </div>
+            <button class="btn-gold" data-page="nt">
+              دخول قسم العهد الجديد واختيار الإصحاح ⬅️
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ====================================================================
+         VIEW 2: OLD TESTAMENT PAGE
+         ==================================================================== -->
+    <div id="view-ot" class="view-page" style="display: none;">
+      
+      <div class="testament-page-header">
+        <div class="page-header-info">
+          <h2>📜 قسم العهد القديم (3 أسفار تاريخية)</h2>
+          <p>اختر السفر والإصحاح الذي ترغب في بدء اختباره مباشرة:</p>
+        </div>
+        <div>
+          <button class="btn-back" data-page="home">
+            ⬅️ العودة للرئيسية
+          </button>
+        </div>
+      </div>
+
+      <div class="books-grid" id="ot-books-list">
+        <!-- Filled dynamically by app.js -->
+      </div>
+
+    </div>
+
+    <!-- ====================================================================
+         VIEW 3: NEW TESTAMENT PAGE
+         ==================================================================== -->
+    <div id="view-nt" class="view-page" style="display: none;">
+      
+      <div class="testament-page-header">
+        <div class="page-header-info">
+          <h2>✉️ قسم العهد الجديد (5 رسائل بولس الرسول)</h2>
+          <p>اختر الرسالة والإصحاح الذي ترغب في بدء اختباره مباشرة:</p>
+        </div>
+        <div>
+          <button class="btn-back" data-page="home">
+            ⬅️ العودة للرئيسية
+          </button>
+        </div>
+      </div>
+
+      <div class="books-grid" id="nt-books-list">
+        <!-- Filled dynamically by app.js -->
+      </div>
+
+    </div>
+
+    <!-- ====================================================================
+         VIEW 4: QUIZ ARENA (ACTIVE QUIZ)
+         ==================================================================== -->
+    <div id="view-quiz" class="quiz-arena">
+      
+      <!-- Quiz Header Topbar -->
+      <div class="quiz-topbar">
+        <div class="quiz-context">
+          <span class="quiz-badge" id="quiz-badge">🏆 وضع البطولة</span>
+          <span class="quiz-chapter-tag" id="quiz-chapter-tag">كورنثوس الثانية - الإصحاح 1</span>
+        </div>
+        <div class="quiz-meta">
+          <div class="streak-pill" title="سلسلة الإجابات الصحيحة المتتالية">
+            🔥 <span id="streak-val">0</span>
+          </div>
+          <div class="timer-pill" id="timer-pill" title="الوقت المتبقي">
+            ⏱️ <span id="timer-val">20</span>ث
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+
+      <!-- Question Counter & Text -->
+      <div class="question-count-text" id="question-count">السؤال 1 من 10</div>
+      <div class="question-text" id="question-text">
+        جاري تحميل نص السؤال...
+      </div>
+
+      <!-- 4 Multiple Choice Options -->
+      <div class="options-grid" id="options-grid">
+        <!-- Dynamically rendered -->
+      </div>
+
+      <!-- Biblical Reference / Explanation Box -->
+      <div class="explanation-box" id="explanation-box">
+        <div class="explanation-header">
+          <span>📖</span> الشاهد الكتابي والشرح:
+        </div>
+        <div class="explanation-text" id="explanation-text"></div>
+      </div>
+
+      <!-- Controls -->
+      <div class="quiz-controls">
+        <button class="btn-secondary" id="btn-quit">
+          ✕ إنهاء الاختبار والرجوع
+        </button>
+        <button class="btn-action" id="btn-next" disabled>
+          السؤال التالي ⬅️
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ====================================================================
+         VIEW 5: RESULTS & SCORECARD
+         ==================================================================== -->
+    <div id="view-results" class="results-card">
+      
+      <div class="trophy-glow" id="res-trophy">🏆</div>
+      <h2 class="results-title" id="res-title">مبارك! لقد أتممت الاختبار</h2>
+      <p class="results-subtitle" id="res-subtitle">إليك ملخص أداءك ونتيجتك في هذا الإصحاح</p>
+
+      <!-- Big Score Banner -->
+      <div class="score-big-pill">
+        <span class="score-num" id="res-score">0</span>
+        <span class="score-max" id="res-max"> / 0</span>
+      </div>
+
+      <!-- Metrics Grid -->
+      <div class="results-grid">
+        <div class="result-box correct">
+          <div class="result-box-num" id="res-correct">0</div>
+          <div class="result-box-lbl">إجابات صحيحة</div>
+        </div>
+        <div class="result-box wrong">
+          <div class="result-box-num" id="res-wrong">0</div>
+          <div class="result-box-lbl">إجابات خاطئة</div>
+        </div>
+        <div class="result-box accuracy">
+          <div class="result-box-num" id="res-accuracy">0%</div>
+          <div class="result-box-lbl">نسبة الدقة</div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="results-actions">
+        <button class="btn-action" id="btn-restart">
+          🔄 إعادة الاختبار
+        </button>
+        <button class="btn-secondary" id="btn-choose-other">
+          📖 اختيار إصحاح آخر
+        </button>
+        <button class="btn-secondary" id="btn-res-home">
+          🏠 العودة للرئيسية
+        </button>
+      </div>
+
+      <!-- Detailed Review List -->
+      <div class="review-section">
+        <h3 class="section-headline">🔍 مراجعة جميع الأسئلة والشواهد الكتابية</h3>
+        <div id="review-list">
+          <!-- Filled by app.js -->
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>دوري أبطال الكتاب المقدس 2026 • الموسم التاسع</p>
+      <p class="footer-credits">
+        مطرانية شبرا الخيمة للأقباط الأرثوذكس — كنيسة الشهيد العظيم مارجرجس والأنبا أنطونيوس
+      </p>
+    </div>
+  </footer>
+
+  <!-- Unified Data & Application Scripts -->
+  <script src="data_all.js" charset="UTF-8"></script>
+  <script src="app.js" charset="UTF-8"></script>
+</body>
+</html>
