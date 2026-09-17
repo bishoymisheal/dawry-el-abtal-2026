@@ -192,7 +192,7 @@
         if (DOM.viewHome) DOM.viewHome.style.display = 'block';
         if (DOM.navHome) DOM.navHome.classList.add('active');
         if (DOM.bnavHome) DOM.bnavHome.classList.add('active');
-        updateBreadcrumbs(['الرئيسية']);
+        if (DOM.historyBar) DOM.historyBar.style.display = 'none';
         if (DOM.btnBack) DOM.btnBack.style.visibility = 'hidden';
         break;
 
@@ -200,7 +200,8 @@
         if (DOM.viewOt) DOM.viewOt.style.display = 'block';
         if (DOM.navOt) DOM.navOt.classList.add('active');
         if (DOM.bnavOt) DOM.bnavOt.classList.add('active');
-        updateBreadcrumbs(['الرئيسية', 'العهد القديم (3 أسفار)']);
+        if (DOM.historyBar) DOM.historyBar.style.display = 'block';
+        updateBreadcrumbs(['العهد القديم (3 أسفار)']);
         if (DOM.btnBack) DOM.btnBack.style.visibility = 'visible';
         window.scrollTo({ top: 0, behavior: 'smooth' });
         break;
@@ -209,25 +210,28 @@
         if (DOM.viewNt) DOM.viewNt.style.display = 'block';
         if (DOM.navNt) DOM.navNt.classList.add('active');
         if (DOM.bnavNt) DOM.bnavNt.classList.add('active');
-        updateBreadcrumbs(['الرئيسية', 'العهد الجديد (5 رسائل)']);
+        if (DOM.historyBar) DOM.historyBar.style.display = 'block';
+        updateBreadcrumbs(['العهد الجديد (5 رسائل)']);
         if (DOM.btnBack) DOM.btnBack.style.visibility = 'visible';
         window.scrollTo({ top: 0, behavior: 'smooth' });
         break;
 
       case 'quiz':
         if (DOM.viewQuiz) DOM.viewQuiz.style.display = 'block';
+        if (DOM.historyBar) DOM.historyBar.style.display = 'block';
         const data = getDataSource();
         const book = data[state.bookId];
         const bTitle = book ? (book.shortTitle || book.title) : '';
         const testTitle = book && book.testament === 'ot' ? 'العهد القديم' : 'العهد الجديد';
-        updateBreadcrumbs(['الرئيسية', testTitle, `${bTitle} - إصحاح ${state.chapterNum}`]);
+        updateBreadcrumbs([testTitle, `${bTitle} - إصحاح ${state.chapterNum}`]);
         if (DOM.btnBack) DOM.btnBack.style.visibility = 'visible';
         window.scrollTo({ top: 0, behavior: 'smooth' });
         break;
 
       case 'results':
         if (DOM.viewResults) DOM.viewResults.style.display = 'block';
-        updateBreadcrumbs(['الرئيسية', 'نتيجة الاختبار والتقييم']);
+        if (DOM.historyBar) DOM.historyBar.style.display = 'block';
+        updateBreadcrumbs(['نتيجة الاختبار والتقييم']);
         if (DOM.btnBack) DOM.btnBack.style.visibility = 'visible';
         window.scrollTo({ top: 0, behavior: 'smooth' });
         break;
