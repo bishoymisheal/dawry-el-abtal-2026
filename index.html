@@ -50,7 +50,8 @@
       <!-- Header Actions -->
       <div class="header-actions">
         <button id="sound-toggle" class="sound-toggle-btn" title="تبديل المؤثرات الصوتية">
-          🔊 الصوت: مفعل
+          <span class="sound-icon">🔊</span>
+          <span class="sound-text">الصوت: مفعل</span>
         </button>
       </div>
 
@@ -90,11 +91,11 @@
             المنصة التفاعلية الرسمية الشاملة لمراجعة وخوض مسابقات الكتاب المقدس للموسم التاسع، تضم منهج 2026 المعتمد: 
             <strong>أسفار العهد القديم</strong> (سفر ملوك أول، ملوك ثاني، وأخبار أيام أول) و<strong>رسائل العهد الجديد</strong> (كورنثوس الثانية، غلاطية، أفسس، فيلبي، وكولوسي).
           </p>
-          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <button class="btn-gold" id="hero-btn-ot" style="width: auto;" data-page="ot">
+          <div class="hero-actions">
+            <button class="btn-gold hero-btn" id="hero-btn-ot" data-page="ot">
               📜 تصفح العهد القديم (3 أسفار)
             </button>
-            <button class="btn-red" id="hero-btn-nt" style="width: auto;" data-page="nt">
+            <button class="btn-red hero-btn" id="hero-btn-nt" data-page="nt">
               ✉️ تصفح العهد الجديد (5 رسائل)
             </button>
           </div>
@@ -389,6 +390,22 @@
       </p>
     </div>
   </footer>
+
+  <!-- Mobile Bottom App Navigation Bar -->
+  <nav class="mobile-bottom-bar" id="mobile-bottom-bar" aria-label="شريط التنقل السفلي للموبايل">
+    <button class="bottom-nav-item active" data-page="home" id="bnav-home">
+      <span class="bnav-icon">🏠</span>
+      <span class="bnav-label">الرئيسية</span>
+    </button>
+    <button class="bottom-nav-item" data-page="ot" id="bnav-ot">
+      <span class="bnav-icon">📜</span>
+      <span class="bnav-label">العهد القديم</span>
+    </button>
+    <button class="bottom-nav-item" data-page="nt" id="bnav-nt">
+      <span class="bnav-icon">✉️</span>
+      <span class="bnav-label">العهد الجديد</span>
+    </button>
+  </nav>
 
   <!-- Unified Data & Application Scripts -->
   <script src="data_all.js" charset="UTF-8"></script>

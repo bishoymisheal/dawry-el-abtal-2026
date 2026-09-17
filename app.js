@@ -97,6 +97,9 @@
     navHome: document.getElementById('nav-home'),
     navOt: document.getElementById('nav-ot'),
     navNt: document.getElementById('nav-nt'),
+    bnavHome: document.getElementById('bnav-home'),
+    bnavOt: document.getElementById('bnav-ot'),
+    bnavNt: document.getElementById('bnav-nt'),
     soundToggle: document.getElementById('sound-toggle'),
     historyBar: document.getElementById('history-bar'),
     btnBack: document.getElementById('btn-back'),
@@ -156,6 +159,13 @@
 
     state.currentPage = page;
 
+    // Toggle quiz active class on body to optimize mobile layout
+    if (page === 'quiz') {
+      document.body.classList.add('quiz-active');
+    } else {
+      document.body.classList.remove('quiz-active');
+    }
+
     // Update History Stack
     if (pushHistory) {
       state.pageHistory.push(page);
@@ -172,7 +182,7 @@
     });
 
     // Reset nav links active state
-    [DOM.navHome, DOM.navOt, DOM.navNt].forEach(n => {
+    [DOM.navHome, DOM.navOt, DOM.navNt, DOM.bnavHome, DOM.bnavOt, DOM.bnavNt].forEach(n => {
       if (n) n.classList.remove('active');
     });
 
@@ -181,6 +191,7 @@
       case 'home':
         if (DOM.viewHome) DOM.viewHome.style.display = 'block';
         if (DOM.navHome) DOM.navHome.classList.add('active');
+        if (DOM.bnavHome) DOM.bnavHome.classList.add('active');
         updateBreadcrumbs(['الرئيسية']);
         if (DOM.btnBack) DOM.btnBack.style.visibility = 'hidden';
         break;
@@ -188,6 +199,7 @@
       case 'ot':
         if (DOM.viewOt) DOM.viewOt.style.display = 'block';
         if (DOM.navOt) DOM.navOt.classList.add('active');
+        if (DOM.bnavOt) DOM.bnavOt.classList.add('active');
         updateBreadcrumbs(['الرئيسية', 'العهد القديم (3 أسفار)']);
         if (DOM.btnBack) DOM.btnBack.style.visibility = 'visible';
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -196,6 +208,7 @@
       case 'nt':
         if (DOM.viewNt) DOM.viewNt.style.display = 'block';
         if (DOM.navNt) DOM.navNt.classList.add('active');
+        if (DOM.bnavNt) DOM.bnavNt.classList.add('active');
         updateBreadcrumbs(['الرئيسية', 'العهد الجديد (5 رسائل)']);
         if (DOM.btnBack) DOM.btnBack.style.visibility = 'visible';
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -228,6 +241,16 @@
         return;
       }
       clearInterval(state.timer);
+      const data = getDataSource();
+      const book = data[state.bookId];
+      if (book && book.testament === 'ot') {
+        navigateTo('ot', {}, true);
+      } else if (book && book.testament === 'nt') {
+        navigateTo('nt', {}, true);
+      } else {
+        navigateTo('home', {}, true);
+      }
+      return;
     }
 
     if (state.currentPage === 'results') {
@@ -338,7 +361,7 @@
         <div class="book-icon">${book.icon || '📜'}</div>
         <div class="book-title-info">
           <h3>${book.title}</h3>
-          <span class="${badgeClass}">${testTitle} • ${book.badge || book.chaptersCount + ' إصحاحاً'}</span>
+          <span class="${badgeClass}">${testTitle} • ${book.chaptersCount} إصحاحاً</span>
         </div>
       </div>
       <p class="book-desc">${book.desc}</p>
@@ -697,26 +720,6 @@
       });
     }
 
-    // Nav Links
-    if (DOM.navHome) {
-      DOM.navHome.addEventListener('click', () => {
-        playSoundClick();
-        navigateTo('home');
-      });
-    }
-    if (DOM.navOt) {
-      DOM.navOt.addEventListener('click', () => {
-        playSoundClick();
-        navigateTo('ot');
-      });
-    }
-    if (DOM.navNt) {
-      DOM.navNt.addEventListener('click', () => {
-        playSoundClick();
-        navigateTo('nt');
-      });
-    }
-
     // Back Buttons
     if (DOM.btnBack) {
       DOM.btnBack.addEventListener('click', handleBackAction);
@@ -769,7 +772,9 @@
       DOM.soundToggle.addEventListener('click', () => {
         state.sound = !state.sound;
         localStorage.setItem('dawry_sound_2026', state.sound);
-        DOM.soundToggle.innerHTML = state.sound ? '🔊 الصوت: مفعل' : '🔇 الصوت: صامت';
+        DOM.soundToggle.innerHTML = state.sound 
+          ? '<span class="sound-icon">🔊</span><span class="sound-text"> الصوت: مفعل</span>' 
+          : '<span class="sound-icon">🔇</span><span class="sound-text"> الصوت: صامت</span>';
         if (state.sound) playSoundClick();
       });
     }
@@ -840,7 +845,9 @@
 
   function initApp() {
     if (DOM.soundToggle) {
-      DOM.soundToggle.innerHTML = state.sound ? '🔊 الصوت: مفعل' : '🔇 الصوت: صامت';
+      DOM.soundToggle.innerHTML = state.sound 
+        ? '<span class="sound-icon">🔊</span><span class="sound-text"> الصوت: مفعل</span>' 
+        : '<span class="sound-icon">🔇</span><span class="sound-text"> الصوت: صامت</span>';
     }
 
     calculateAndDisplayStats();
